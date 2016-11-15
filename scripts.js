@@ -10,9 +10,28 @@ var wordsArray = ["HEALTH CARE", "LIVING ROOM", "LAW ENFORCEMENT", "PARKING LOT"
 "PEACE PROCESS", "INCOME TAX", "TAX CUT", "KITCHEN TABLE", "TALK SHOW", "SCHOOL BOARD", "GOLF COURSE", "MUSIC EDUCATION", "FACULTY MEMBERS", "TAX CUTS", "ROOM TEMPERATURE", "HEALTH PROBLEMS",
 "EDUCATION PROGRAMS", "SUBSTANCE ABUSE", "DISTRICT ATTORNEY"];
 
-function randomWord() {
-    var randNum = Math.floor(Math.random() * wordsArray.length);
-    return wordsArray[randNum];
+var randNum = Math.floor(Math.random() * wordsArray.length);
+var randWord = wordsArray[randNum];
+
+function findSpace(){
+    var index = randWord.indexOf(' ');
+    return index;
 }
 
+function getBlankWord(){
+    var index = findSpace();
+    var arr = [];
+    var guess = "";
+    var char = "";
 
+    for(i = 0; i < randWord.length; i++){
+        if(i == index){
+            arr[index] = "&nbsp&nbsp&nbsp";
+        }else{
+            arr[i] = "_ ";
+        }
+
+    }
+    guess = arr.join("");
+    document.getElementById("blankWord").innerHTML= guess;
+}
