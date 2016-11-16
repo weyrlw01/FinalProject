@@ -6,14 +6,16 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="scripts.js"></script>
 </head>
-<body>
+<body onload = "getBlankWord()">
 
 <h1>Let's Play Hangman</h1>
-<img src="FinalProjectImages/hangmanEmpty.png">
+<img src="FinalProjectImages/hangmanEmpty.png"; id="hangPic";>
 <br>
 <div style="font-size: 50px" id="blankWord" ></div>
 <br>
-<input type="text" id="guessedLetter">
-<input type="button" id="guess" onclick="getBlankWord()" value="Guess">
+<input type="text" id="letter">
+<input type="button" id="guess" onclick="guessedLetter()" value="Guess">
+<br>
+<div id="errorGuess"></div>
 </body>
 </html>

@@ -12,6 +12,12 @@ var wordsArray = ["HEALTH CARE", "LIVING ROOM", "LAW ENFORCEMENT", "PARKING LOT"
 
 var randNum = Math.floor(Math.random() * wordsArray.length);
 var randWord = wordsArray[randNum];
+var counter = 0;
+
+function makeArray(){
+    var charArray = randWord.split("");
+    return charArray;
+}
 
 function findSpace(){
     var index = randWord.indexOf(' ');
@@ -34,4 +40,52 @@ function getBlankWord(){
     }
     guess = arr.join("");
     document.getElementById("blankWord").innerHTML= guess;
+    return guess;
 }
+
+function guessedLetter() {
+    var letter = document.getElementById("letter").value;
+    var upperLetter = letter.toUpperCase();
+    var word = getBlankWord();
+    var wordArray = makeArray();
+    var letters = [];
+    var a = wordArray.indexOf(upperLetter);
+    var b = letters.indexOf(upperLetter);
+
+    if (b != -1) {
+        counter++;
+        document.getElementById("errorGuess").innerHTML = "You have already guessed that letter.";
+    } else if (a == -1) {
+        letters.push(upperLetter);
+        counter++;
+        document.getElementById("errorGuess").innerHTML = "That was an incorrect guess.";
+    } else if (a != -1) {
+        word[a] = upperLetter;
+        do {
+            a = wordArray.indexOf(upperLetter, a + 1);
+            if(a != -1){
+                word[a] = upperLetter;
+            }
+        } while(a != -1)
+        document.getElementById("errorGuess").innerHTML = "That was a correct guess.";
+    }
+    document.getElementById("blankWord").innerHTML = word;
+    if(counter == 1){
+        document.getElementById("hangPic").src = "FinalProjectImages/hangmanHead.png"
+    }else if(counter == 2){
+        document.getElementById("hangPic").src = "FinalProjectImages/hangmanBody.png"
+    }else if(counter == 3) {
+        document.getElementById("hangPic").src = "FinalProjectImages/hangmanLeftArm.png"
+    }else if(counter == 4) {
+        document.getElementById("hangPic").src = "FinalProjectImages/hangmanRightArm.png"
+    }else if(counter == 5) {
+        document.getElementById("hangPic").src = "FinalProjectImages/hangmanLeftLeg.png"
+    }else if(counter == 6) {
+        document.getElementById("hangPic").src = "FinalProjectImages/hangmanComplete.png"
+    }
+}
+
+
+
+
+
