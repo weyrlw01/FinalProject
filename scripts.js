@@ -50,7 +50,6 @@ function getBlankWord(){
 }
 
 function guessedLetter() {
-    clearInput();
     var letter = document.getElementById("letter").value;
     var upperLetter = letter.toUpperCase();
     var newWord = "";
@@ -93,6 +92,7 @@ function guessedLetter() {
         gameOverLose();
     }
     gameOverWin(newWord);
+    clearInput();
 }
 
 function gameOverLose(){
