@@ -13,6 +13,8 @@ var wordsArray = ["HEALTH CARE", "LIVING ROOM", "LAW ENFORCEMENT", "PARKING LOT"
 var randNum = Math.floor(Math.random() * wordsArray.length);
 var randWord = wordsArray[randNum];
 var counter = 0;
+var letters = [];
+
 
 function makeArray(){
     var charArray = randWord.split("");
@@ -40,15 +42,16 @@ function getBlankWord(){
     }
     guess = arr.join("");
     document.getElementById("blankWord").innerHTML= guess;
-    return guess;
+
+    return arr;
 }
 
 function guessedLetter() {
     var letter = document.getElementById("letter").value;
     var upperLetter = letter.toUpperCase();
+    var newWord = "";
     var word = getBlankWord();
     var wordArray = makeArray();
-    var letters = [];
     var a = wordArray.indexOf(upperLetter);
     var b = letters.indexOf(upperLetter);
 
@@ -60,6 +63,7 @@ function guessedLetter() {
         counter++;
         document.getElementById("errorGuess").innerHTML = "That was an incorrect guess.";
     } else if (a != -1) {
+        letters.push(upperLetter);
         word[a] = upperLetter;
         do {
             a = wordArray.indexOf(upperLetter, a + 1);
@@ -69,7 +73,8 @@ function guessedLetter() {
         } while(a != -1)
         document.getElementById("errorGuess").innerHTML = "That was a correct guess.";
     }
-    document.getElementById("blankWord").innerHTML = word;
+    newWord = word.join("");
+    document.getElementById("blankWord").innerHTML = newWord;
     if(counter == 1){
         document.getElementById("hangPic").src = "FinalProjectImages/hangmanHead.png"
     }else if(counter == 2){
@@ -82,8 +87,21 @@ function guessedLetter() {
         document.getElementById("hangPic").src = "FinalProjectImages/hangmanLeftLeg.png"
     }else if(counter == 6) {
         document.getElementById("hangPic").src = "FinalProjectImages/hangmanComplete.png"
+        gameOverLose();
+    }
+    gameOverWin(newWord, randWord);
+}
+
+function gameOverLose(){
+    alert("You have lost. Game over!");
+}
+
+function gameOverWin(theirs, mine){
+    if(theirs == mine){
+        alert("You win!");
     }
 }
+
 
 
 
