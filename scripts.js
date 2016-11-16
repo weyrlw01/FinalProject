@@ -16,6 +16,9 @@ var counter = 0;
 var letters = [];
 var word = [];
 
+function clearInput(){
+    document.getElementById("letter").value = "";
+}
 
 function makeArray(){
     var charArray = randWord.split("");
@@ -47,6 +50,7 @@ function getBlankWord(){
 }
 
 function guessedLetter() {
+    clearInput();
     var letter = document.getElementById("letter").value;
     var upperLetter = letter.toUpperCase();
     var newWord = "";
