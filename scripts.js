@@ -14,6 +14,7 @@ var randNum = Math.floor(Math.random() * wordsArray.length);
 var randWord = wordsArray[randNum];
 var counter = 0;
 var letters = [];
+var word = [];
 
 
 function makeArray(){
@@ -42,15 +43,13 @@ function getBlankWord(){
     }
     guess = arr.join("");
     document.getElementById("blankWord").innerHTML= guess;
-
-    return arr;
+    word = arr;
 }
 
 function guessedLetter() {
     var letter = document.getElementById("letter").value;
     var upperLetter = letter.toUpperCase();
     var newWord = "";
-    var word = getBlankWord();
     var wordArray = makeArray();
     var a = wordArray.indexOf(upperLetter);
     var b = letters.indexOf(upperLetter);
@@ -89,17 +88,18 @@ function guessedLetter() {
         document.getElementById("hangPic").src = "FinalProjectImages/hangmanComplete.png"
         gameOverLose();
     }
-    gameOverWin(newWord, randWord);
+    gameOverWin(newWord);
 }
 
 function gameOverLose(){
     alert("You have lost. Game over!");
 }
 
-function gameOverWin(theirs, mine){
-    if(theirs == mine){
-        alert("You win!");
+function gameOverWin(answer){
+    if(answer.indexOf("_") == -1){
+        alert("You Win!");
     }
+
 }
 
 
