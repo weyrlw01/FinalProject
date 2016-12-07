@@ -1,0 +1,15 @@
+body{
+    background-color: aqua;
+}
+
+#blankWord{
+    font-size: 50px;
+}
+
+#creator{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    text-align: right;
+}
